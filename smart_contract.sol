@@ -212,8 +212,13 @@ contract ForkDelta is SafeMath {
   }
 
   //support ERC223
-  function tokenFallback( address _origin, uint _value, bytes _data) public returns (bool ok){return true;}
-
+  function tokenFallback(address sender, uint amount, bytes data ) {    
+    address token = msg.sender;
+    require(token!=0);
+    tokens[token][sender] = safeAdd(tokens[token][sender], amount);
+    Deposit(token, sender, amount, tokens[token][sender]);
+  }
+  
   function balanceOf(address token, address user) constant returns (uint) {
     return tokens[token][user];
   }
