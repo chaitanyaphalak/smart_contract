@@ -114,6 +114,7 @@ contract ForkDelta {
     Withdraw(0, msg.sender, amount, tokens[0][msg.sender]);
   }
 
+
   /**
   * This function handles deposits of Ethereum based tokens to the contract.
   * Does not allow Ether.
@@ -145,8 +146,8 @@ contract ForkDelta {
         // Transfer was initiated from depositToken(). User token balance will be updated there.
         return true;
       } else {
-        // Direct ECR223 Token.transfer into this contract not allowed, to keep it consistent
-        // with direct transfers of ECR20 and ETH.
+        // Direct ERC223 Token.transfer into this contract not allowed, to keep it consistent
+        // with direct transfers of ERC20 and ETH.
         revert();
       }
   }
